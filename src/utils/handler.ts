@@ -1,32 +1,46 @@
 import axios from 'axios'
 import type { RequestResponse } from './types'
-import type { NavigationGuardReturn, RouteLocationNormalizedGeneric } from 'vue-router'
+import type { RouteLocationNormalizedGeneric } from 'vue-router'
 
-export async function routerHandler(to: RouteLocationNormalizedGeneric): Promise<NavigationGuardReturn> {
-  const userCheckedPaths = new Set(['/login', '/register'])
-
-  if(!userCheckedPaths.has(to.path)){
-    return true
-  }
-
+export async function routerHandler(to: RouteLocationNormalizedGeneric): Promise<string | boolean> {
   try {
-    const response = await axios.get<RequestResponse>('/api/user/nouser')
-    const noUser = response.data.ok && response.data.data
+    const response = await axios.get<RequestResponse>('/api/user/nouser');
+    const noUser = response.data.ok && response.data.data;
 
-    if(noUser && to.path !== '/register'){
-      return '/register'
+    if (noUser) {
+      if (to.path !== '/register') {
+        return '/register';
+      }
+      return true;
     }
 
-    if(!noUser && to.path === '/register'){
-      return '/login'
+    if (to.path === '/register') {
+      return '/login';
     }
 
+    const token = localStorage.getItem('token')
+    if (!token) {
+      if (to.path !== '/login') return '/login';
+      return true;
+    }
+
+    const check = await requestWithToken('/api/auth/check', ReuqestType.get);
+    if (!check.ok) {
+      localStorage.removeItem('token');
+      if (to.path !== '/login') return '/login';
+      return true;
+    }
+
+    if (to.path === '/login') {
+      return '/';
+    }
     return true
+
   } catch (error) {
-    if(to.path !== '/login'){
+    console.error('路由守卫异常:', error)
+    if (to.path !== '/login') {
       return '/login'
     }
-
     return true
   }
 }
