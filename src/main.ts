@@ -8,6 +8,7 @@ import * as directives from 'vuetify/directives';
 import { aliases, mdi } from 'vuetify/iconsets/mdi';
 import { createPinia } from 'pinia';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import router from "./router";
 
 const pinia = createPinia();
 
@@ -24,6 +25,7 @@ const vuetify = createVuetify({
 })
 
 createApp(App)
+.use(router)
 .use(pinia)
 .use(vuetify)
 .mount('#app')

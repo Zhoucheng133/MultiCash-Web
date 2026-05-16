@@ -1,3 +1,7 @@
 <template>
-  <v-btn>测试</v-btn>
+  <RouterView/>
 </template>
+
+<script lang=ts setup>
+import { RouterView } from 'vue-router'
+</script>
