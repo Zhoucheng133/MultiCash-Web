@@ -11,13 +11,15 @@ const router=createRouter({
     },
     {
       path: '/',
-      redirect: '/home'
+      redirect: '/login'
     },
     {
+      name: "登录",
       path: "/login",
       component: ()=>import("../pages/Login.vue")
     },
     {
+      name: "注册",
       path: "/register",
       component: ()=>import("../pages/Register.vue")
     }

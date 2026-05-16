@@ -1,29 +1,33 @@
 import axios from 'axios'
 import type { RequestResponse } from './types'
-import type { RouteLocationNormalizedGeneric } from 'vue-router'
+import type { NavigationGuardReturn, RouteLocationNormalizedGeneric } from 'vue-router'
 
-export async function routerHandler(to: RouteLocationNormalizedGeneric): Promise<string> {
+export async function routerHandler(to: RouteLocationNormalizedGeneric): Promise<NavigationGuardReturn> {
+  const userCheckedPaths = new Set(['/login', '/register'])
 
-  if(to.path === '/login' || to.path === '/register'){
-    return to.path
+  if(!userCheckedPaths.has(to.path)){
+    return true
   }
 
   try {
-    let response = await axios.get<RequestResponse>('/api/user/nouser')
-    if(response.data.data === true){
+    const response = await axios.get<RequestResponse>('/api/user/nouser')
+    const noUser = response.data.ok && response.data.data
+
+    if(noUser && to.path !== '/register'){
       return '/register'
     }
 
-    const validToken = await requestWithToken('/api/user/nouser', ReuqestType.get)
-
-    if(validToken.data){
-      return '/'
-    }else{
+    if(!noUser && to.path === '/register'){
       return '/login'
     }
 
+    return true
   } catch (error) {
-    return "/login"
+    if(to.path !== '/login'){
+      return '/login'
+    }
+
+    return true
   }
 }
 
