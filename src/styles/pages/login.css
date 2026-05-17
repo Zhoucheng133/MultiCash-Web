@@ -1,0 +1,45 @@
+.main{
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: fixed;
+  background:
+    radial-gradient(circle at top left, rgba(25, 118, 210, 0.16), transparent 34rem),
+    linear-gradient(135deg, #f7f9fc 0%, #eef3f8 54%, #f8fbff 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.panel{
+  width: 400px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  backdrop-filter: blur(15px);
+  padding: 30px;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+@media screen and (max-width: 500px) {
+  .panel {
+    width: calc(100vw - 30px);
+  }
+}
+
+.title{
+  font-weight: bold;
+  font-size: 30px;
+}
+.sub{
+  font-size: 15px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.item{
+  margin-top: 20px;
+}
+.label{
+  margin-bottom: 10px;
+}
