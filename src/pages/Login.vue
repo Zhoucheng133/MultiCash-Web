@@ -23,7 +23,6 @@
         <v-form v-model="valid" class="auth-form" @submit.prevent="handleSubmit">
           <v-text-field
             v-model.trim="username"
-            :rules="usernameRules"
             autocomplete="username"
             color="primary"
             label="用户名"
@@ -34,7 +33,6 @@
           <v-text-field
             v-model="password"
             :append-inner-icon="showPassword ? 'mdi-eye-off-outline' : 'mdi-eye-outline'"
-            :rules="passwordRules"
             :type="showPassword ? 'text' : 'password'"
             autocomplete="current-password"
             color="primary"
@@ -75,15 +73,6 @@ const password = ref('')
 const showPassword = ref(false)
 const errorMsg = ref('');
 
-const usernameRules = [
-  (value: string) => !!value || '请输入用户名',
-  (value: string) => value.length >= 3 || '用户名至少 3 个字符',
-]
-
-const passwordRules = [
-  (value: string) => !!value || '请输入密码',
-]
-
 const canSubmit = computed(() => valid.value && username.value.length > 0 && password.value.length > 0)
 
 async function handleSubmit() {
@@ -97,7 +86,9 @@ async function handleSubmit() {
     localStorage.setItem('token', response.data);
     router.replace("/");
   }else{
-    errorMsg.value = response.data;
+    if(response.data=="Incorrect username or password"){
+      errorMsg.value = "用户名或密码错误";
+    }
   }
 }
 </script>

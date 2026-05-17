@@ -23,7 +23,6 @@
         <v-form v-model="valid" class="auth-form" @submit.prevent="handleSubmit">
           <v-text-field
             v-model.trim="username"
-            :rules="usernameRules"
             autocomplete="username"
             color="teal"
             label="用户名"
@@ -34,7 +33,6 @@
           <v-text-field
             v-model="password"
             :append-inner-icon="showPassword ? 'mdi-eye-off-outline' : 'mdi-eye-outline'"
-            :rules="passwordRules"
             :type="showPassword ? 'text' : 'password'"
             autocomplete="new-password"
             color="teal"
@@ -47,7 +45,6 @@
           <v-text-field
             v-model="confirmPassword"
             :append-inner-icon="showConfirmPassword ? 'mdi-eye-off-outline' : 'mdi-eye-outline'"
-            :rules="confirmPasswordRules"
             :type="showConfirmPassword ? 'text' : 'password'"
             autocomplete="new-password"
             color="teal"
@@ -89,20 +86,6 @@ const confirmPassword = ref('')
 const showPassword = ref(false)
 const showConfirmPassword = ref(false)
 const errorMsg = ref('');
-
-const usernameRules = [
-  (value: string) => !!value || '请输入用户名',
-  (value: string) => value.length >= 3 || '用户名至少 3 个字符',
-]
-
-const passwordRules = [
-  (value: string) => !!value || '请输入密码',
-]
-
-const confirmPasswordRules = [
-  (value: string) => !!value || '请再次输入密码',
-  (value: string) => value === password.value || '两次输入的密码不一致',
-]
 
 const canSubmit = computed(
   () =>
