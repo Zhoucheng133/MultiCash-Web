@@ -1,4 +1,4 @@
 export interface RequestResponse{
   ok: boolean;
-  data: boolean;
+  data: any;
 }
