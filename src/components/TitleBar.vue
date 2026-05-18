@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div class="head_img">
+    <div class="head_img" @click="clickHandler">
       <img src="/icon.svg" alt="" width="40px" draggable="false">
       <div class="head_label">MultiCash</div>
     </div>
@@ -13,7 +13,7 @@
         <v-menu activator="parent">
           <v-list width="200">
             <v-list-subheader>账号设置</v-list-subheader>
-            <v-list-item>
+            <v-list-item @click="router.push('/password')">
               <v-list-item-title>修改密码</v-list-item-title>
             </v-list-item>
             <v-list-item @click="logoutHandler">
@@ -30,8 +30,17 @@
 import { storeToRefs } from 'pinia';
 import Store from '../utils/store';
 import { logoutHandler } from '../utils/components/user';
+import { useRouter } from 'vue-router';
+
+const router=useRouter();
 const store=Store();
 const dark=storeToRefs(store).dark;
+
+function clickHandler() {
+  if(props.isLogin){
+    router.push('/');
+  }
+}
 
 const props = defineProps(["isLogin"]);
 </script>

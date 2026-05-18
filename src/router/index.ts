@@ -22,6 +22,11 @@ const router=createRouter({
       name: "注册",
       path: "/register",
       component: ()=>import("../pages/Register.vue")
+    },
+    {
+      name: "修改密码",
+      path: "/password",
+      component: ()=>import("../pages/ChangePassword.vue")
     }
   ]
 })
