@@ -1,0 +1,12 @@
+.main{
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: fixed;
+  background:
+    radial-gradient(circle at top left, rgba(25, 118, 210, 0.16), transparent 34rem),
+    linear-gradient(135deg, #f7f9fc 0%, #eef3f8 54%, #f8fbff 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -23,3 +23,12 @@
   font-size: 18px;
   font-weight: bold;
 }
+
+.actions{
+  display: flex;
+  width: 180px;
+  justify-content: flex-end;
+  margin-right: 30px;
+  align-items: center;
+  gap: 10px;
+}
