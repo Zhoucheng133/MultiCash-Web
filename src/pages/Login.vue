@@ -6,11 +6,11 @@
       <div class="sub">Hi, 欢迎回来 👋</div>
       <div class="item">
         <div className="label">用户名</div>
-        <v-text-field hide-details density="compact" variant="outlined" v-model="username" style="width: 100%;" @keyup.enter="login" />
+        <v-text-field hide-details density="compact" variant="outlined" v-model="username" style="width: 100%;" @keyup.enter="login" autocomplete="off" />
       </div>
       <div class="item">
         <div className="label">密码</div>
-        <v-text-field hide-details density="compact" variant="outlined" type="password" v-model="password" style="width: 100%;" @keyup.enter="login" />
+        <v-text-field hide-details density="compact" variant="outlined" type="password" v-model="password" style="width: 100%;" @keyup.enter="login" autocomplete="off" />
       </div>
       <v-btn style="margin-top: 30px; width: 100%" @click="login" color="blue">登录</v-btn>
     </div>

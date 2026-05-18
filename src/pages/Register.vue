@@ -6,15 +6,15 @@
       <div class="sub">Hi, 从这里开始吧 👋</div>
       <div class="item">
         <div className="label">用户名</div>
-        <v-text-field hide-details density="compact" variant="outlined" v-model="username" style="width: 100%;" @keyup.enter="register" />
+        <v-text-field hide-details density="compact" variant="outlined" v-model="username" style="width: 100%;" @keyup.enter="register" autocomplete="off" />
       </div>
       <div class="item">
         <div className="label">密码</div>
-        <v-text-field hide-details density="compact" variant="outlined" type="password" v-model="password" style="width: 100%;" @keyup.enter="register"  />
+        <v-text-field hide-details density="compact" variant="outlined" type="password" v-model="password" style="width: 100%;" @keyup.enter="register" autocomplete="off" />
       </div>
       <div class="item">
         <div className="label">重复密码</div>
-        <v-text-field hide-details density="compact" variant="outlined" type="password" v-model="rePassword" style="width: 100%;" @keyup.enter="register"  />
+        <v-text-field hide-details density="compact" variant="outlined" type="password" v-model="rePassword" style="width: 100%;" @keyup.enter="register" autocomplete="off" />
       </div>
       <v-btn style="margin-top: 30px; width: 100%" @click="register" color="teal">注册</v-btn>
     </div>
