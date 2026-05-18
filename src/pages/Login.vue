@@ -30,6 +30,8 @@ import { loginHandler } from '../utils/components/user';
 import { useRouter } from 'vue-router';
 const router = useRouter();
 
+document.title = "MultiCash | 登录";
+
 const username = ref('');
 const password = ref('');
 const snackbar = ref(false);

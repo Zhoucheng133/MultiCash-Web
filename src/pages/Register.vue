@@ -34,6 +34,8 @@ import { registerHandler } from '../utils/components/user';
 import { useRouter } from 'vue-router';
 const router=useRouter();
 
+document.title = "MultiCash | 注册";
+
 const username=ref("");
 const password=ref("");
 const rePassword=ref("");
