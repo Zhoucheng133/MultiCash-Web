@@ -35,3 +35,9 @@ export async function loginHandler(username: string, password: string): Promise<
 
   return true;
 }
+
+export async function logoutHandler(): Promise<void> {
+  await axios.post('/api/user/logout');
+  localStorage.removeItem('token');
+  window.location.href="/login";
+}
