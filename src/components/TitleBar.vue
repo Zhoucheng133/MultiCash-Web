@@ -16,7 +16,7 @@
             <v-list-item @click="router.push('/password')">
               <v-list-item-title>修改密码</v-list-item-title>
             </v-list-item>
-            <v-list-item @click="logoutHandler">
+            <v-list-item @click="logoutHandler()">
               <v-list-item-title>注销</v-list-item-title>
             </v-list-item>
           </v-list>
