@@ -1,4 +1,5 @@
 import axios from "axios";
+import { RequestType, requestWithToken } from "../handler";
 
 export async function registerHandler(username: string, password: string, repassword: string): Promise<string | boolean> {
   if (!username.trim()) {
@@ -36,8 +37,30 @@ export async function loginHandler(username: string, password: string): Promise<
   return true;
 }
 
-export async function logoutHandler(): Promise<void> {
+export async function logoutHandler(linkToLogin=true): Promise<void> {
   await axios.post('/api/user/logout');
   localStorage.removeItem('token');
-  window.location.href="/login";
+  if(linkToLogin){
+    window.location.href="/login";
+  }
+}
+
+export async function changePasswordHanlder(oldPassword: string, newPassword: string): Promise<string | boolean> {
+  if (!oldPassword.trim()) {
+    return '请输入当前账户密码';
+  }else if (!newPassword) {
+    return '请输入新密码';
+  }else if(newPassword == oldPassword){
+    return '新密码不能与当前密码相同';
+  }
+
+  const response =  await requestWithToken("/api/user/changepwd", RequestType.post, {
+    password: oldPassword,
+    newPassword
+  })
+  if(!response.ok){
+    return response.data;
+  }
+  await logoutHandler(false);
+  return true;
 }
