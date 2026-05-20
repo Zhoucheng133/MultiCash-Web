@@ -18,29 +18,31 @@
         <InfoPanel title="余额" content="¥123456.00" />
         <InfoPanel title="启用中" content="3" />
       </div>
-      <v-carousel height="120"
-        hide-delimiter-background 
-        :show-arrows="false" 
-        class="section_info_mobile"
-        hide-delimiters
-        v-model="cardIndex"
-      >
-        <v-carousel-item>
-          <div class="ml-1 mr-1">
-            <InfoPanel title="银行卡数量" content="3" />
-          </div>
-        </v-carousel-item>
-        <v-carousel-item>
-          <div class="ml-1 mr-1">
-            <InfoPanel title="余额" content="¥123456.00" />
-          </div>
-        </v-carousel-item>
-        <v-carousel-item>
-          <div class="ml-1 mr-1">
-            <InfoPanel title="启用中" content="3" />
-          </div>
-        </v-carousel-item>
-      </v-carousel>
+      <div class="carousel">
+        <v-carousel 
+          height="120"
+          hide-delimiter-background 
+          :show-arrows="false" 
+          hide-delimiters
+          v-model="cardIndex"
+        >
+          <v-carousel-item>
+            <div class="carousel_item">
+              <InfoPanel title="银行卡数量" content="3" />
+            </div>
+          </v-carousel-item>
+          <v-carousel-item>
+            <div class="carousel_item">
+              <InfoPanel title="余额" content="¥123456.00" />
+            </div>
+          </v-carousel-item>
+          <v-carousel-item>
+            <div class="carousel_item">
+              <InfoPanel title="启用中" content="3" />
+            </div>
+          </v-carousel-item>
+        </v-carousel>
+      </div>
       <div class="cardIndexIndicator">
         <i :class="cardIndex==0 ? 'fa-solid fa-circle' : 'fa-regular fa-circle'" style="font-size: 8px;"></i>
         <i :class="cardIndex==1 ? 'fa-solid fa-circle' : 'fa-regular fa-circle'" style="font-size: 8px;"></i>
