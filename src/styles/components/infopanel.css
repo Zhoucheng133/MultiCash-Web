@@ -1,0 +1,29 @@
+.panel{
+  display: flex;
+  flex-direction: column;
+  height: 120px;
+  background-color: white;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 20px;
+  justify-content: center;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+@media screen and (max-width: 580px) {
+  .panel{
+    box-shadow: none;
+  }
+}
+
+.title{
+  font-size: 16px;
+  color: grey;
+}
+
+.content{
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: 8px;
+}
