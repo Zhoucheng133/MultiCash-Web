@@ -8,9 +8,7 @@
           <div class="all_title">全部银行卡</div>
         </div>
         <div class="section_title_actions">
-          <v-btn color="blue" rounded="lg" prepend-icon="mdi mdi-plus">
-            添加银行卡
-          </v-btn>
+          <v-btn color="blue" rounded="lg" prepend-icon="mdi mdi-plus" @click="showAddCardDialog=true">添加银行卡</v-btn>
         </div>
       </div>
       <div class="section_info_desktop">
@@ -123,17 +121,20 @@
       </v-card-text>
     </v-card>
   </v-dialog>
+  <AddCardDialog :show-add-card-dialog="showAddCardDialog" @close="showAddCardDialog=false" />
 </template>
 
 <script lang="ts" setup>
 import TitleBar from '../components/TitleBar.vue';
 import InfoPanel from '../components/InfoPanel.vue';
+import AddCardDialog from '../components/AddCardDialog.vue';
 import { computed, ref } from 'vue';
 import Store from '../utils/store';
 import { storeToRefs } from 'pinia';
 
 const store=Store();
 const { searchKeyword, banks, selectedBank, cardTypes, selectedCardType } = storeToRefs(store);
+const showAddCardDialog=ref(false);
 
 const cardIndex = ref(0);
 const dialog = ref(false);
