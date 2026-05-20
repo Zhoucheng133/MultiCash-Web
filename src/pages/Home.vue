@@ -74,14 +74,61 @@
           :model-value="selectedCardType"
         ></v-select>
       </div>
+      <div class="filter_panel_mobile">
+        <div class="filters" v-if="filters.length!=0">
+          <v-chip v-for="(item, index) in filters" :key="index" color="green">
+            {{ item }}
+          </v-chip>
+        </div>
+        <div class="filters" v-else>
+          <v-chip>/</v-chip>
+        </div>
+        <v-btn rounded="lg" color="blue" @click="dialog=true">筛选</v-btn>
+      </div>
     </div>
   </div>
+
+  <v-dialog v-model="dialog" width="auto">
+    <v-card title="筛选银行卡" max-width="400" min-width="300">
+      <template v-slot:actions>
+        <v-btn class="ms-auto" text="完成" @click="dialog = false"></v-btn>
+      </template>
+      <v-card-text>
+        <v-text-field 
+          variant="outlined" 
+          density="compact" 
+          hide-details 
+          prepend-inner-icon="mdi mdi-magnify" 
+          placeholder="搜索" 
+          v-model="searchKeyword"
+        />
+        <v-select
+          label="银行"
+          hide-details
+          density="compact"
+          :items="banks"
+          variant="outlined"
+          :model-value="selectedBank"
+          class="mt-8"
+        ></v-select>
+        <v-select
+          label="类型"
+          hide-details
+          density="compact"
+          :items="cardTypes"
+          variant="outlined"
+          :model-value="selectedCardType"
+          class="mt-8"
+        ></v-select>
+      </v-card-text>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script lang="ts" setup>
 import TitleBar from '../components/TitleBar.vue';
 import InfoPanel from '../components/InfoPanel.vue';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import Store from '../utils/store';
 import { storeToRefs } from 'pinia';
 
@@ -89,6 +136,15 @@ const store=Store();
 const { searchKeyword, banks, selectedBank, cardTypes, selectedCardType } = storeToRefs(store);
 
 const cardIndex = ref(0);
+const dialog = ref(false);
+
+const filters=computed(()=>{
+  let filter = [];
+  if(searchKeyword.value.length>0) filter.push('关键字');
+  if(selectedBank.value!='全部') filter.push('银行');
+  if(selectedCardType.value!='全部') filter.push('类型');
+  return filter;
+});
 
 </script>
 

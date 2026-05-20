@@ -71,6 +71,26 @@
   grid-template-columns: auto 220px 200px;
 }
 
+.filter_panel_mobile{
+  display: none;
+  width: 100%;
+  background-color: white;
+  margin-top: 20px;
+  border-radius: 10px;
+  padding: 15px;
+  justify-content: space-between;
+}
+
+.filter_panel_mobile > button{
+  background-color: rgb(23, 105, 170);
+}
+
+.filters{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
 @media screen and (max-width: 580px) {
   .page{
     width: calc(100% - 40px);
@@ -90,5 +110,8 @@
   }
   .filter_panel_desktop{
     display: none;
+  }
+  .filter_panel_mobile{
+    display: flex;
   }
 }
