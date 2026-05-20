@@ -1,5 +1,5 @@
 <template>
-  <div class="panel shadow-xl">
+  <div class="panel">
     <div class="title">{{ props.title }}</div>
     <div class="content">{{ props.content }}</div>
   </div>
