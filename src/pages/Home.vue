@@ -48,6 +48,32 @@
         <i :class="cardIndex==1 ? 'fa-solid fa-circle' : 'fa-regular fa-circle'" style="font-size: 8px;"></i>
         <i :class="cardIndex==2 ? 'fa-solid fa-circle' : 'fa-regular fa-circle'" style="font-size: 8px;"></i>
       </div>
+      <div class="filter_panel_desktop">
+        <v-text-field 
+          variant="outlined" 
+          density="compact" 
+          hide-details 
+          prepend-inner-icon="mdi mdi-magnify" 
+          placeholder="搜索" 
+          v-model="searchKeyword"
+        />
+        <v-select
+          label="银行"
+          hide-details
+          density="compact"
+          :items="banks"
+          variant="outlined"
+          :model-value="selectedBank"
+        ></v-select>
+        <v-select
+          label="类型"
+          hide-details
+          density="compact"
+          :items="cardTypes"
+          variant="outlined"
+          :model-value="selectedCardType"
+        ></v-select>
+      </div>
     </div>
   </div>
 </template>
@@ -56,6 +82,11 @@
 import TitleBar from '../components/TitleBar.vue';
 import InfoPanel from '../components/InfoPanel.vue';
 import { ref } from 'vue';
+import Store from '../utils/store';
+import { storeToRefs } from 'pinia';
+
+const store=Store();
+const { searchKeyword, banks, selectedBank, cardTypes, selectedCardType } = storeToRefs(store);
 
 const cardIndex = ref(0);
 
