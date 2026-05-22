@@ -1,6 +1,5 @@
 <template>
   <div class="card">
-    <div class="card-shimmer"></div>
     <div class="bank-info">
       <div class="bank-logo-placeholder">
         <div class="logo-icon">✦</div>
