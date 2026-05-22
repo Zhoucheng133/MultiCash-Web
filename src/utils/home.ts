@@ -21,6 +21,7 @@ export async function getCards(): Promise<RequestResponse> {
   );
   store.cardTypes = ['全部', ...uniqueTypes];
 
+
   let { searchKeyword, selectedBank, selectedCardType } = store;
 
   cards = cards.filter((card: BankCard) => {

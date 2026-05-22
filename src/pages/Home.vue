@@ -12,9 +12,9 @@
         </div>
       </div>
       <div class="section_info_desktop">
-        <InfoPanel title="银行卡数量" content="3" />
-        <InfoPanel title="余额" :content="`¥ ${formatBalance(123456)}`" />
-        <InfoPanel title="启用中" content="3" />
+        <InfoPanel title="银行卡数量" :content="cards.length" />
+        <InfoPanel title="余额" :content="balanceText" />
+        <InfoPanel title="启用中" :content="enabledCardCount" />
       </div>
       <div class="carousel">
         <v-carousel 
@@ -26,17 +26,17 @@
         >
           <v-carousel-item>
             <div class="carousel_item">
-              <InfoPanel title="银行卡数量" content="3" />
+              <InfoPanel title="银行卡数量" :content="cards.length" />
             </div>
           </v-carousel-item>
           <v-carousel-item>
             <div class="carousel_item">
-              <InfoPanel title="余额" content="¥123456.00" />
+              <InfoPanel title="余额" :content="balanceText" />
             </div>
           </v-carousel-item>
           <v-carousel-item>
             <div class="carousel_item">
-              <InfoPanel title="启用中" content="3" />
+              <InfoPanel title="启用中" :content="enabledCardCount" />
             </div>
           </v-carousel-item>
         </v-carousel>
@@ -168,6 +168,20 @@ const filters=computed(()=>{
   if(selectedCardType.value!='全部') filter.push('类型');
   return filter;
 });
+
+const enabledCardCount=computed(() => {
+  return cards.value.filter(card => card.status == 1).length;
+})
+
+const balanceText = computed(() => {
+  const enabled = cards.value.filter(card => card.status === 1)
+
+  const balance = enabled.reduce((sum, card) => {
+    return sum + card.balance
+  }, 0)
+
+  return `¥ ${formatBalance(balance)}`
+})
 
 onMounted(async ()=>{
   const response=await getCards();
