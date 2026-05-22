@@ -61,7 +61,8 @@
           density="compact"
           :items="banks"
           variant="outlined"
-          :model-value="selectedBank"
+          v-model="selectedBank"
+          @update:modelValue="getCards"
         ></v-select>
         <v-select
           label="类型"
@@ -69,7 +70,8 @@
           density="compact"
           :items="cardTypes"
           variant="outlined"
-          :model-value="selectedCardType"
+          v-model="selectedCardType"
+          @update:modelValue="getCards"
         ></v-select>
       </div>
       <div class="filter_panel_mobile">
