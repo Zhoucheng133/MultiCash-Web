@@ -45,3 +45,10 @@ export async function getCards(): Promise<RequestResponse> {
     data: cards
   };
 }
+
+export const formatBalance = (value: number) => {
+  return value.toLocaleString('zh-CN', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  })
+}

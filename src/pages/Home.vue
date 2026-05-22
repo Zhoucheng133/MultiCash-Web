@@ -13,7 +13,7 @@
       </div>
       <div class="section_info_desktop">
         <InfoPanel title="银行卡数量" content="3" />
-        <InfoPanel title="余额" content="¥123456.00" />
+        <InfoPanel title="余额" :content="`¥ ${formatBalance(123456)}`" />
         <InfoPanel title="启用中" content="3" />
       </div>
       <div class="carousel">
@@ -141,7 +141,7 @@ import AddCardDialog from '../components/AddCardDialog.vue';
 import { computed, onMounted, ref } from 'vue';
 import Store from '../utils/store';
 import { storeToRefs } from 'pinia';
-import { getCards } from '../utils/home';
+import { formatBalance, getCards } from '../utils/home';
 import CardItem from '../components/CardItem.vue';
 
 const addCardDialogRef = ref();
