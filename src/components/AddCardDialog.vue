@@ -82,7 +82,7 @@ const nextStep = async () => {
       const cardData=cardInfo.data as BankCardInfo;
       input.value.bin_suffix = input.value.bin.slice(-4);
       input.value.bank_name = cardData.bank_name;
-      input.value.bank_code = cardData.bank_name;
+      input.value.bank_code = cardData.bank_name.length==0 ? 'UNKOWN' : cardData.bank_name;
       input.value.card_type = analyseCardType(cardData.card_brand);
       step.value++;
     }else{

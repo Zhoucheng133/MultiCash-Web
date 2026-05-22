@@ -26,7 +26,9 @@
         <span class="meta-label">BALANCE</span>
         <span class="meta-value">¥ {{ formatBalance(card.balance) }}</span>
       </div>
-      <div class="logo">121</div>
+      <div class="logo">
+        <img :src="logoHandler()" alt="" srcset="" width="50">
+      </div>
     </div>
   </div>
 </template>
@@ -39,6 +41,23 @@ import { type BankCard } from '../utils/types'
 const props = defineProps<{
   card: BankCard
 }>()
+
+const logoHandler=()=>{
+  switch (props.card.card_type) {
+    case "万事达":
+      return "/mc-logo.svg";
+    case "银联":
+      return "/unionpay-logo.svg";
+    case "VISA":
+      return "/visa-logo.png";
+    case "美国运通":
+      return "/am-logo.svg";
+    case "JCB":
+      return "/jcb-logo.svg";
+    default:
+      break;
+  }
+}
 
 </script>
 
