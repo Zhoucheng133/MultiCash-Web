@@ -2,7 +2,6 @@
   width: 100vw;
   display: flex;
   align-items: center;
-  border-bottom: 2px solid #f0f0f0;
   z-index: 10;
   justify-content: space-between;
   user-select: none;

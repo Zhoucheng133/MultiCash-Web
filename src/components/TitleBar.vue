@@ -6,10 +6,6 @@
     </div>
     <div class="actions" v-if="props.isLogin">
       <v-btn variant="text" size="40">
-        <i :class="dark ? 'fa fa-moon' : 'far fa-sun'" style="font-size: 15px;"></i>
-      </v-btn>
-      <v-btn variant="text" size="40">
-        <!-- <v-icon icon="far fa-user" size="15"></v-icon> -->
         <i class="far fa-user" style="font-size: 15px;"></i>
         <v-menu activator="parent">
           <v-list width="200">
@@ -28,14 +24,10 @@
 </template>
 
 <script lang="ts" setup>
-import { storeToRefs } from 'pinia';
-import Store from '../utils/store';
 import { logoutHandler } from '../utils/components/user';
 import { useRouter } from 'vue-router';
 
 const router=useRouter();
-const store=Store();
-const dark=storeToRefs(store).dark;
 
 function clickHandler() {
   if(props.isLogin){
