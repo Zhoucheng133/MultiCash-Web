@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
+import type { BankCard } from "./types";
 
 export default defineStore('store', ()=>{
   const searchKeyword=ref("");
@@ -10,11 +11,14 @@ export default defineStore('store', ()=>{
   const cardTypes=ref<string[]>(['全部']);
   const selectedCardType=ref<string>('全部');
 
+  const cards=ref<BankCard[]>([]);
+
   return {
     searchKeyword,
     banks,
     selectedBank,
     cardTypes,
-    selectedCardType
+    selectedCardType,
+    cards
   }
 })

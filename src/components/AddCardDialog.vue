@@ -93,6 +93,7 @@ const nextStep = async () => {
     const response=await addCardHandler(input.value);
     if(response.ok){
       close();
+      reload();
     }else{
       snackbar.value = true;
       text.value = response.data;
@@ -132,6 +133,12 @@ defineExpose({
   open,
   close
 })
+
+const emit = defineEmits([ "reload" ]);
+
+function reload(){
+  emit("reload");
+}
 </script>
 
 <style scoped>

@@ -83,6 +83,10 @@
         </div>
         <v-btn rounded="lg" color="blue" @click="dialog=true">筛选</v-btn>
       </div>
+
+      <div class="card_list">
+        <CardItem v-for="(item, index) in cards" :key="index" :card="item" />
+      </div>
     </div>
   </div>
 
@@ -121,25 +125,36 @@
       </v-card-text>
     </v-card>
   </v-dialog>
-  <AddCardDialog ref="addCardDialogRef" />
+  <AddCardDialog ref="addCardDialogRef" @reload="getCards()" />
+  <v-snackbar v-model="snackbar">
+    {{ text }}
+    <template v-slot:actions>
+      <v-btn color="pink" variant="text" @click="snackbar = false">关闭</v-btn>
+    </template>
+  </v-snackbar>
 </template>
 
 <script lang="ts" setup>
 import TitleBar from '../components/TitleBar.vue';
 import InfoPanel from '../components/InfoPanel.vue';
 import AddCardDialog from '../components/AddCardDialog.vue';
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import Store from '../utils/store';
 import { storeToRefs } from 'pinia';
+import { getCards } from '../utils/home';
+import CardItem from '../components/CardItem.vue';
 
 const addCardDialogRef = ref();
+
+const snackbar=ref(false);
+const text=ref('');
 
 const openAddCardDialog = () => {
   addCardDialogRef.value.open();
 };
 
 const store=Store();
-const { searchKeyword, banks, selectedBank, cardTypes, selectedCardType } = storeToRefs(store);
+const { searchKeyword, banks, selectedBank, cardTypes, selectedCardType, cards } = storeToRefs(store);
 
 const cardIndex = ref(0);
 const dialog = ref(false);
@@ -151,6 +166,14 @@ const filters=computed(()=>{
   if(selectedCardType.value!='全部') filter.push('类型');
   return filter;
 });
+
+onMounted(async ()=>{
+  const response=await getCards();
+  if(!response.ok){
+    snackbar.value=true;
+    text.value=response.data;
+  }
+})
 
 </script>
 
