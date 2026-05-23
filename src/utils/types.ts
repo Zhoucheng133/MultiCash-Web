@@ -13,8 +13,8 @@ export interface BankCard{
   card_type: string;  // 这是指的是MaterCard/VISA/UnionPay
   status: number;
   balance: number;
-  created_at: string;
-  updated_at: string;
+  created_at: number;
+  updated_at: number;
 }
 
 export interface BankCardInfo{

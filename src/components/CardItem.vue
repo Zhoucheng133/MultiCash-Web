@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" @click="showDialog">
     <div class="bank-info">
       <div class="bank-logo-placeholder">
         <div class="logo-icon">✦</div>
@@ -9,7 +9,7 @@
     </div>
 
     <div class="card-number">
-      <span class="number-group">{{ card.bin }}</span>
+      <!-- <span class="number-group">{{ card.bin }}</span> -->
       <span class="number-group">••••</span>
       <span class="number-group">••••</span>
       <span class="number-group">{{ card.bin_suffix }}</span>
@@ -30,12 +30,21 @@
       </div>
     </div>
   </div>
+  <CardDialog :card="card" ref="cardDialogRef" />
 </template>
 
 
 <script lang="ts" setup>
+import { ref } from 'vue';
 import { formatBalance } from '../utils/home';
 import { type BankCard } from '../utils/types'
+import CardDialog from './CardDialog.vue';
+
+const cardDialogRef=ref();
+
+const showDialog=()=>{
+  cardDialogRef.value.show();
+}
 
 const props = defineProps<{
   card: BankCard

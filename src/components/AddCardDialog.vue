@@ -47,6 +47,7 @@ import { ref } from 'vue';
 import { type BankCard, type BankCardInfo } from '../utils/types';
 import { addCardHandler, analyseCardType, getCardInfo } from '../utils/components/addcard';
 
+
 const step = ref(1)
 const snackbar = ref(false);
 const text = ref('');
@@ -61,8 +62,8 @@ const input = ref<BankCard>({
   card_type: '',
   status: 1,
   balance: 0,
-  created_at: '',
-  updated_at: ''
+  created_at: 0,
+  updated_at: 0
 });
 
 const nextStep = async () => {
@@ -124,8 +125,8 @@ const close=()=>{
     card_type: '',
     status: 1,
     balance: 0,
-    created_at: '',
-    updated_at: ''
+    created_at: 0,
+    updated_at: 0
   };
 }
 
