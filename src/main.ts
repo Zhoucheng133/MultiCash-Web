@@ -10,10 +10,15 @@ import { createPinia } from 'pinia';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import router from "./router";
 import { aliases, mdi } from 'vuetify/iconsets/mdi';
+import { zhHans } from 'vuetify/locale';
 
 const pinia = createPinia();
 
 const vuetify = createVuetify({
+  locale: {
+    locale: 'zhHans',
+    messages: { zhHans },
+  },
   components,
   directives,
   icons: {
