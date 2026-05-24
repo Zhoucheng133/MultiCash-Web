@@ -8,7 +8,7 @@
       <v-divider></v-divider>
       <v-tabs-window v-model="tab">
         <v-tabs-window-item value="record">
-          <CardRecord :card="card" :records="record" />
+          <CardRecord :card="card" :records="record" @reload-records="reloadRecords" />
         </v-tabs-window-item>
         <v-tabs-window-item value="info">
           <v-sheet class="pa-5">
