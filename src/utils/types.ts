@@ -32,8 +32,8 @@ export interface BankCardInfo{
 export interface RecordRow{
   id: string;
   card_id: string;
-  type: number;
-  amount: number; // type: 0表示入账，1表示出账
+  type: number; // type: 0表示入账，1表示出账
+  amount: number;
   remark: string;
   status: number;
   created_at: number;
