@@ -1,15 +1,19 @@
 <template>
-  <div class="card" @click="showDialog">
+  <div :class="['card', card.status==0 ? 'card_disabled' : '']" @click="showDialog">
     <div class="bank-info">
       <div class="bank-logo-placeholder">
         <div class="logo-icon">✦</div>
       </div>
-      <span class="bank-name">{{ card.name }}</span>
+      <div class="bank-name">
+        <div>{{ card.name }}</div>
+        <div>
+          <v-chip v-if="card.status==0" color="red" variant="flat" density="compact">停用</v-chip>
+        </div>
+      </div>
       <div class="card-category">DEBIT</div>
     </div>
 
     <div class="card-number">
-      <!-- <span class="number-group">{{ card.bin }}</span> -->
       <span class="number-group">••••</span>
       <span class="number-group">••••</span>
       <span class="number-group">{{ card.bin_suffix }}</span>
