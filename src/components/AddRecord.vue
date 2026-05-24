@@ -109,7 +109,7 @@ const selectCards=computed(()=>{
       bin_suffix: ''
     },
     ...cards.value,
-  ]
+  ].filter(card => card.id !== props.card.id);
 })
 
 const dialog=ref(false);
