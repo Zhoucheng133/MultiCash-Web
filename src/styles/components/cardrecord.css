@@ -1,0 +1,6 @@
+.content{
+  overflow-y: auto;
+  max-height: 400px;
+  user-select: none;
+  -webkit-user-select: none;
+}

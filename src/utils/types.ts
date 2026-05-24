@@ -11,7 +11,7 @@ export interface BankCard{
   bank_name: string;
   bank_code: string;
   card_type: string;  // 这是指的是MaterCard/VISA/UnionPay
-  status: number;
+  status: number; // 0表示禁用，1表示正常
   balance: number;
   created_at: number;
   updated_at: number;
@@ -27,4 +27,14 @@ export interface BankCardInfo{
   country_iso3: string;
   country_name: string;
   currency: string;
+}
+
+export interface RecordRow{
+  id: string;
+  card_id: string;
+  type: number;
+  amount: number; // type: 0表示入账，1表示出账
+  remark: string;
+  status: number;
+  created_at: number;
 }

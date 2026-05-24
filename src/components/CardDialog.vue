@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" max-width="500">
+  <v-dialog v-model="dialog" max-width="500" scrollable>
     <v-card :title="card.name">
       <v-tabs v-model="tab" color="primary">
         <v-tab value="record">交易记录</v-tab>
@@ -8,7 +8,7 @@
       <v-divider></v-divider>
       <v-tabs-window v-model="tab">
         <v-tabs-window-item value="record">
-          <v-sheet class="pa-5" color="purple">One</v-sheet>
+          <CardRecord :card="card" :records="record" />
         </v-tabs-window-item>
         <v-tabs-window-item value="info">
           <v-sheet class="pa-5">
@@ -21,22 +21,42 @@
       </template>
     </v-card>
   </v-dialog>
+  <v-snackbar v-model="snackbar">
+    {{ text }}
+    <template v-slot:actions>
+      <v-btn color="pink" variant="text" @click="snackbar = false">关闭</v-btn>
+    </template>
+  </v-snackbar>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import type { BankCard } from '../utils/types';
+import type { BankCard, RecordRow } from '../utils/types';
 import CardInfo from './CardInfo.vue';
+import CardRecord from './CardRecord.vue';
+import { getRecord } from '../utils/components/carddialog';
 
 const props = defineProps<{
   card: BankCard;
 }>();
 
-const dialog = ref(false);
-const tab = ref('info');
+const record= ref<RecordRow[]>([]);
 
-const show=() => {
+const snackbar = ref(false);
+const text = ref('');
+
+const dialog = ref(false);
+const tab = ref('record');
+
+const show=async () => {
   dialog.value = true;
+  const response=await getRecord(props.card.id);
+  if(response.ok){
+    record.value=response.data as RecordRow[];
+  }else{
+    snackbar.value=true;
+    text.value=response.data;
+  }
 };
 
 defineExpose({
