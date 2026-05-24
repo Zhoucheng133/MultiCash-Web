@@ -22,7 +22,22 @@
     <div>{{ dayjs.unix(card.created_at).format("YYYY/MM/DD") }}</div>
     <div>上次修改</div>
     <div>{{ dayjs.unix(card.updated_at).format("YYYY/MM/DD") }}</div>
+    <div>操作</div>
+    <div class="flex items-center gap-2">
+      <v-btn variant="tonal" @click="copyCardId">编辑</v-btn>
+      <v-btn variant="tonal" :color="card.status==0 ? '' : 'red'" @click="statusHandler">
+        {{ card.status==0 ? '启用' : '停用' }}
+      </v-btn>
+    </div>
   </div>
+  <v-dialog v-model="confirm" max-width="300">
+    <v-card :title="confirmTitle">
+      <template v-slot:actions>
+        <v-btn text="取消" @click="confirm=false"></v-btn>
+        <v-btn text="确定" @click="statusAction"></v-btn>
+      </template>
+    </v-card>
+  </v-dialog>
   <v-snackbar v-model="snackbar">
     {{ text }}
     <template v-slot:actions>
@@ -36,12 +51,38 @@ import { ref } from 'vue';
 import type { BankCard } from '../utils/types';
 import useClipboard from 'vue-clipboard3';
 import { copy } from '../utils/components/carddialog';
-import { formatBalance } from '../utils/home';
+import { formatBalance, getCards } from '../utils/home';
 import dayjs from 'dayjs';
+import { updateStatus } from '../utils/components/cardinfo';
 const { toClipboard } = useClipboard();
 
 const snackbar = ref(false);
 const text = ref('');
+
+const confirmTitle = ref('');
+const confirm = ref(false);
+
+const statusAction=async ()=>{
+  const response=await updateStatus(props.card.id, props.card.status);
+  if(response.ok){
+    text.value = '操作成功';
+    snackbar.value = true;
+    await getCards();
+  }else{
+    text.value = response.data;
+    snackbar.value = true;
+  }
+  confirm.value = false;
+}
+
+const statusHandler=()=>{
+  if(props.card.status==0){
+    confirmTitle.value = '确定要启用此银行卡吗？';
+  }else{
+    confirmTitle.value = '确定要停用此银行卡吗？';
+  }
+  confirm.value = true;
+}
 
 const copyCardId = async () => {
   const res = await copy(props.card.id);
