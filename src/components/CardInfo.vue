@@ -24,7 +24,7 @@
     <div>{{ dayjs.unix(card.updated_at).format("YYYY/MM/DD") }}</div>
     <div>操作</div>
     <div class="flex items-center gap-2">
-      <v-btn variant="tonal" @click="copyCardId">编辑</v-btn>
+      <v-btn variant="tonal" @click="cardEdit">编辑</v-btn>
       <v-btn variant="tonal" :color="card.status==0 ? '' : 'red'" @click="statusHandler">
         {{ card.status==0 ? '启用' : '停用' }}
       </v-btn>
@@ -61,6 +61,10 @@ const text = ref('');
 
 const confirmTitle = ref('');
 const confirm = ref(false);
+
+const cardEdit=()=>{
+  // TODO 编辑
+}
 
 const statusAction=async ()=>{
   const response=await updateStatus(props.card.id, props.card.status);
