@@ -69,13 +69,18 @@ const snackbar=ref(false);
 const text=ref('');
 
 const addRecordAction=async ()=>{
-  await addRecordHandler(
+  const response=await addRecordHandler(
     props.card.id,
     selectedCard.value,
     selectedRecordType.value,
     amount.value,
     remark.value
   )
+  if(!response.ok) {
+    text.value=response.data;
+    snackbar.value=true;
+    return;
+  }
   emit("reloadRecords");
   text.value="添加成功";
   snackbar.value=true;
