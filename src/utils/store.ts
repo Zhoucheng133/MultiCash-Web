@@ -23,7 +23,7 @@ export default defineStore('store', ()=>{
 
   const cards=ref<BankCard[]>([]);
 
-  const recordFilter=ref<RecordFilter | undefined>({
+  const recordFilter=ref<RecordFilter>({
     type: undefined,
     remark: undefined,
     amount: undefined,
