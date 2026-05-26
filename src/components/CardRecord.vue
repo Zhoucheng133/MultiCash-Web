@@ -1,5 +1,17 @@
 <template>
   <div class="content">
+    <div class="record_filter">
+      <v-select
+        label="类型"
+        hide-details
+        :items="typeSelectItems"
+        v-model="selectedRecordType"
+        item-title="text"
+        item-value="value"
+        @update:modelValue="filterChanged"
+      >
+      </v-select>
+    </div>
     <v-data-table :items="records" :headers="headers" @click:row="showInfo">
       <template v-slot:item.type="{ item }">
         <v-chip v-if="item.type==0" color="green" :style="item.status==0 ? {'text-decoration': 'line-through'} : {}">入账</v-chip>
@@ -26,9 +38,17 @@ import { formatBalance } from '../utils/home';
 import type { BankCard, RecordRow } from '../utils/types';
 import { ref } from 'vue';
 import RecordInfo from './RecordInfo.vue';
+import Store from '../utils/store.ts';
+import { storeToRefs } from 'pinia';
+const store=Store();
+
+const { recordFilter }=storeToRefs(store)
 
 const recordIndex=ref(0);
 const recordInfoRef=ref();
+
+const typeSelectItems=[{ text: "全部", value: -1 }, { text: "入账", value: 0 }, { text: "出账", value: 1 }]
+const selectedRecordType=ref<number>(-1);
 
 const showInfo=(_: any, row: any)=>{
   recordIndex.value=row.index;
@@ -37,6 +57,11 @@ const showInfo=(_: any, row: any)=>{
 }
 
 const reloadRecords=()=>{
+  emit("reloadRecords");
+}
+
+const filterChanged=()=>{
+  recordFilter.value.type=selectedRecordType.value==-1 ? undefined : selectedRecordType.value;
   emit("reloadRecords");
 }
 

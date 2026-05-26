@@ -18,7 +18,7 @@
       </v-tabs-window>
       <template v-slot:actions>
         <v-btn text="添加交易记录" @click="addRecordRef.showAdd"></v-btn>
-        <v-btn text="完成" @click="dialog=false" variant="flat" color='rgb(23, 105, 170)'></v-btn>
+        <v-btn text="完成" @click="close" variant="flat" color='rgb(23, 105, 170)'></v-btn>
       </template>
     </v-card>
   </v-dialog>
@@ -39,6 +39,9 @@ import CardRecord from './CardRecord.vue';
 import { getRecord } from '../utils/components/carddialog';
 import AddRecord from './AddRecord.vue';
 import { getCards } from '../utils/home';
+import Store from '../utils/store.ts';
+
+const store = Store();
 
 const props = defineProps<{
   card: BankCard;
@@ -64,6 +67,11 @@ const reloadRecords=async ()=>{
   }
   await getCards();
 }
+
+const close=async () => {
+  dialog.value = false;
+  store.resetFilter();
+};
 
 const show=async () => {
   dialog.value = true;
