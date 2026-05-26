@@ -17,9 +17,7 @@
           <div class="record_item_title">操作</div>
           <div class="flex items-center gap-2">
             <v-btn variant="tonal" @click="recordEdit">编辑</v-btn>
-            <v-btn variant="tonal" :color="record[recordIndex].status==0 ? '' : 'red'" @click="statusHandler">
-              {{ record[recordIndex].status==0 ? '启用' : '移除' }}
-            </v-btn>
+            <v-btn variant="tonal" v-if="record[recordIndex].status==1" color="red" @click="removeAction">移除</v-btn>
           </div>
         </div>
       </v-card-text>
@@ -28,6 +26,12 @@
       </template>
     </v-card>
   </v-dialog>
+  <v-snackbar v-model="snackbar">
+    {{ text }}
+    <template v-slot:actions>
+      <v-btn color="pink" variant="text" @click="snackbar = false">关闭</v-btn>
+    </template>
+  </v-snackbar>
 </template>
 
 <script lang="ts" setup>
@@ -35,15 +39,28 @@ import { ref } from 'vue';
 import type { RecordRow } from '../utils/types';
 import { formatBalance } from '../utils/home';
 import dayjs from 'dayjs';
+import { removeHandler } from '../utils/components/recordinfo';
 
 const dialog=ref(false);
+
+const snackbar=ref(false);
+const text=ref("");
 
 const recordEdit=()=>{
   // TODO 编辑
 }
 
-const statusHandler=()=>{
-  // TODO 停用
+const removeAction=async ()=>{
+  const response=await removeHandler(props.record[props.recordIndex]);
+  if(response.ok){
+    emit("reloadRecords");
+    snackbar.value=true;
+    text.value="操作成功";
+    close();
+  }else{
+    text.value=response.data;
+    snackbar.value=true;
+  }
 };
 
 const show=()=>{

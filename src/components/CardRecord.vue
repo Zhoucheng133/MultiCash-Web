@@ -2,14 +2,18 @@
   <div class="content">
     <v-data-table :items="records" :headers="headers" @click:row="showInfo">
       <template v-slot:item.type="{ item }">
-        <v-chip v-if="item.type==0" color="green">入账</v-chip>
-        <v-chip v-else color="red">出账</v-chip>
+        <v-chip v-if="item.type==0" color="green" :style="item.status==0 ? {'text-decoration': 'line-through'} : {}">入账</v-chip>
+        <v-chip v-else color="red" :style="item.status==0 ? {'text-decoration': 'line-through'} : {}">出账</v-chip>
       </template>
       <template v-slot:item.amount="{ item }">
-        ¥ {{ formatBalance(item.amount) }}
+        <div :style="item.status==0 ? {'text-decoration': 'line-through'} : {}">
+          ¥ {{ formatBalance(item.amount) }}
+        </div>
       </template>
       <template v-slot:item.created_at="{ item }">
-        {{ dayjs.unix(item.created_at).format("YYYY/MM/DD") }}
+        <div :style="item.status==0 ? {'text-decoration': 'line-through'} : {}">
+          {{ dayjs.unix(item.created_at).format("YYYY/MM/DD") }}
+        </div>
       </template>
     </v-data-table>
   </div>
