@@ -28,7 +28,7 @@
       <v-btn color="pink" variant="text" @click="snackbar = false">关闭</v-btn>
     </template>
   </v-snackbar>
-  <AddRecord :card="card" ref="addRecordRef" @reload-records="reloadRecords" />
+  <AddRecordDialog :card="card" ref="addRecordRef" @reload-records="reloadRecords" />
 </template>
 
 <script setup lang="ts">
@@ -37,7 +37,7 @@ import type { BankCard, RecordRow } from '../utils/types';
 import CardInfo from './CardInfo.vue';
 import CardRecord from './CardRecord.vue';
 import { getRecord } from '../utils/components/carddialog';
-import AddRecord from './AddRecord.vue';
+import AddRecordDialog from './AddRecordDialog.vue';
 import { getCards } from '../utils/home';
 import Store from '../utils/store.ts';
 

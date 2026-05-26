@@ -5,7 +5,7 @@
         <v-btn text="上一步" :disabled="step === 1" @click="prevStep"></v-btn>
         <v-spacer></v-spacer>
         <v-btn text="取消" @click="close"></v-btn>
-        <v-btn :text="step === 2 ? '完成' : '下一步'" @click="nextStep"></v-btn>
+        <v-btn :text="step === 2 ? '完成' : '下一步'" @click="nextStep" color='rgb(23, 105, 170)' variant="flat"></v-btn>
       </template>
       <v-stepper
         hide-actions

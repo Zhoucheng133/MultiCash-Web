@@ -44,6 +44,7 @@
       <v-btn color="pink" variant="text" @click="snackbar = false">关闭</v-btn>
     </template>
   </v-snackbar>
+  <CardEitDialog :card="card" ref="cardEditRef" />
 </template>
 
 <script lang="ts" setup>
@@ -55,6 +56,7 @@ import { formatBalance, getCards } from '../utils/home';
 import dayjs from 'dayjs';
 import { updateStatus } from '../utils/components/cardinfo';
 const { toClipboard } = useClipboard();
+import CardEitDialog from './CardEitDialog.vue';
 
 const snackbar = ref(false);
 const text = ref('');
@@ -62,8 +64,10 @@ const text = ref('');
 const confirmTitle = ref('');
 const confirm = ref(false);
 
+const cardEditRef = ref();
+
 const cardEdit=()=>{
-  // TODO 编辑
+  cardEditRef.value.show();
 }
 
 const statusAction=async ()=>{
