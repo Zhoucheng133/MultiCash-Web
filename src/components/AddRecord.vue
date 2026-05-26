@@ -146,5 +146,10 @@ const emit = defineEmits([ "reloadRecords" ]);
 </script>
 
 <style scoped>
-@import "../styles/components/addrecord.css";
+.content{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 15px;
+}
 </style>

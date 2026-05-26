@@ -106,5 +106,10 @@ const props = defineProps<{
 </script>
 
 <style scoped>
-@import "../styles/components/cardinfo.css";
+.info_item{
+  display: grid;
+  grid-template-columns: 120px auto;
+  gap: 10px;
+  align-items: center;
+}
 </style>

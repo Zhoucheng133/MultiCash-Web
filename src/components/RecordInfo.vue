@@ -84,5 +84,13 @@ const emit = defineEmits([ "reloadRecords" ]);
 </script>
 
 <style scoped>
-@import "../styles/components/recordinfo.css";
+.record_content{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 120px auto;
+  gap: 10px;
+  align-items: center;
+  user-select: none;
+  -webkit-user-select: none;
+}
 </style>

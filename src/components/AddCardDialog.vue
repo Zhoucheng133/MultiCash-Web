@@ -143,5 +143,8 @@ function reload(){
 </script>
 
 <style scoped>
-@import "../styles/components/addcard.css";
+.tip{
+  font-size: 13px;
+  color: grey;
+}
 </style>

@@ -80,5 +80,19 @@ const emit = defineEmits([ "reloadRecords" ]);
 </script>
 
 <style scoped>
-@import "../styles/components/cardrecord.css";
+.content{
+  overflow-y: auto;
+  max-height: 400px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.record_filter{
+  position: sticky;
+  top: 0;
+  background-color: white;
+  width: 100%;
+  z-index: 20;
+  display: flex;
+}
 </style>
