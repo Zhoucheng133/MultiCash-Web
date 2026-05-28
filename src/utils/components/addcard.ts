@@ -16,3 +16,16 @@ export async function addCardHandler(card: BankCard): Promise<RequestResponse>{
     balance: card.balance,
   })
 }
+
+export function analyseCardType(type: string): string{
+  switch (type) {
+    case "MASTERCARD":
+      return "万事达";
+    case "CHINA UNION PAY":
+      return "银联";
+    case "AMERICAN EXPRESS":
+      return "美国运通";
+    default:
+      return type;
+  }
+}

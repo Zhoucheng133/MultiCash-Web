@@ -45,7 +45,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import { type BankCard, type BankCardInfo } from '../utils/types';
-import { addCardHandler, getCardInfo } from '../utils/components/addcard';
+import { addCardHandler, analyseCardType, getCardInfo } from '../utils/components/addcard';
 
 
 const step = ref(1)
@@ -84,7 +84,7 @@ const nextStep = async () => {
       input.value.bin_suffix = input.value.bin.slice(-4);
       input.value.bank_name = cardData.issuer;
       input.value.bank_code = cardData.issuer.length==0 ? 'UNKOWN' : cardData.issuer;
-      input.value.card_type = cardData.brand;
+      input.value.card_type = analyseCardType(cardData.brand);
       step.value++;
     }else{
       snackbar.value = true;
