@@ -32,22 +32,30 @@
       <v-btn color="pink" variant="text" @click="snackbar = false">关闭</v-btn>
     </template>
   </v-snackbar>
+  <RecordEdiitDialog ref="recordEditRef" @reload="emit('reloadRecords')" />
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import type { RecordRow } from '../utils/types';
 import { formatBalance } from '../utils/home';
 import dayjs from 'dayjs';
 import { removeHandler } from '../utils/components/recordinfo';
+import RecordEdiitDialog from './RecordEdiitDialog.vue';
 
 const dialog=ref(false);
 
 const snackbar=ref(false);
 const text=ref("");
 
+const recordEditRef=ref();
+
+const currentRecord = computed(() => {
+  return props.record[props.recordIndex] 
+});
+
 const recordEdit=()=>{
-  // TODO 编辑
+  recordEditRef.value.show(currentRecord.value);
 }
 
 const removeAction=async ()=>{
