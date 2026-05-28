@@ -29,7 +29,7 @@
       </template>
     </v-data-table>
   </div>
-  <RecordInfo :record="records" :recordIndex="recordIndex" ref="recordInfoRef" @reloadRecords="reloadRecords" />
+  <RecordInfoDialog :record="records" :recordIndex="recordIndex" ref="recordInfoRef" @reloadRecords="reloadRecords" />
 </template>
 
 <script lang="ts" setup>
@@ -37,7 +37,7 @@ import dayjs from 'dayjs';
 import { formatBalance } from '../utils/home';
 import type { BankCard, RecordRow } from '../utils/types';
 import { ref } from 'vue';
-import RecordInfo from './RecordInfo.vue';
+import RecordInfoDialog from './RecordInfoDialog.vue';
 import Store from '../utils/store.ts';
 import { storeToRefs } from 'pinia';
 const store=Store();
