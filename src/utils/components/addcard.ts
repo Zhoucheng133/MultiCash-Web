@@ -6,19 +6,6 @@ export async function getCardInfo(bin: string): Promise<RequestResponse>{
   return await requestWithToken(`/api/card/bincheck?bin=${bin}`, RequestType.get)
 }
 
-export function analyseCardType(type: string): string{
-  switch (type) {
-    case "MASTERCARD":
-      return "万事达";
-    case "CHINA UNION PAY":
-      return "银联";
-    case "AMERICAN EXPRESS":
-      return "美国运通";
-    default:
-      return type;
-  }
-}
-
 export async function addCardHandler(card: BankCard): Promise<RequestResponse>{ 
   return await requestWithToken("/api/card/add", RequestType.post, {
     bin: card.bin,

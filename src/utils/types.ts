@@ -18,15 +18,12 @@ export interface BankCard{
 }
 
 export interface BankCardInfo{
-  bank_name: string;
   bin: string;
-  card_brand: string; // 这是指MasterCard/VISA/UnionPay
-  card_level: string;
-  card_type: string;  // 这里指的是储蓄卡和信用卡，不使用该参数
-  country_code: string;
-  country_iso3: string;
-  country_name: string;
-  currency: string;
+  brand: string; // 这是指MasterCard/VISA/UnionPay
+  category: string;
+  type: string;  // 这里指的是储蓄卡和信用卡，不使用该参数
+  issuer: string;
+  country: string;
 }
 
 export interface RecordRow{
