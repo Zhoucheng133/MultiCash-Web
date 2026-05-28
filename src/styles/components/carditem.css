@@ -118,3 +118,10 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+.card-name-text{
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
