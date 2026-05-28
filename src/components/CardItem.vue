@@ -5,7 +5,7 @@
         <div class="logo-icon">✦</div>
       </div>
       <div class="bank-name">
-        <div>{{ card.name }}</div>
+        <div class="card-name-text">{{ card.name }}</div>
         <div>
           <v-chip v-if="card.status==0" color="red" variant="flat" density="compact">停用</v-chip>
         </div>
