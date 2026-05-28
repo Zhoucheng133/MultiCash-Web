@@ -54,6 +54,7 @@
           prepend-inner-icon="mdi mdi-magnify" 
           placeholder="搜索" 
           v-model="searchKeyword"
+          @update:model-value="getCards"
         />
         <v-select
           label="银行"
@@ -105,6 +106,7 @@
           prepend-inner-icon="mdi mdi-magnify" 
           placeholder="搜索" 
           v-model="searchKeyword"
+          @update:model-value="getCards"
         />
         <v-select
           label="银行"
