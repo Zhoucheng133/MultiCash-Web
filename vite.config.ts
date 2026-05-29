@@ -9,7 +9,7 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['icon.svg'],
+      includeAssets: ['icon_full.svg'],
       manifest: {
         name: "MultiCash",
         short_name: 'MultiCash',
@@ -26,7 +26,7 @@ export default defineConfig({
             type: 'image/png'
           },
           {
-            src: 'icon.svg',
+            src: 'icon_full.svg',
             sizes: 'any',
             type: 'image/svg+xml',
             purpose: 'any'
