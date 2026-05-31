@@ -4,3 +4,7 @@ body{
   margin: 0;
   padding: 0;
 }
+
+.v-checkbox .v-selection-control{
+  min-height: 0
+}

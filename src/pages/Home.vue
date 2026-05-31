@@ -101,7 +101,7 @@
       <template v-slot:actions>
         <v-btn class="ms-auto" text="完成" @click="dialog = false"></v-btn>
       </template>
-      <v-card-text>
+      <v-card-text style="padding-bottom: 0;">
         <v-text-field 
           variant="outlined" 
           density="compact" 
@@ -131,6 +131,7 @@
           @update:modelValue="getCards"
           class="mt-8"
         ></v-select>
+        <v-checkbox class="mt-2" label="隐藏停用卡片" hide-details v-model="hideDisabled" @update:model-value="getCards" />
       </v-card-text>
     </v-card>
   </v-dialog>
@@ -170,6 +171,7 @@ const dialog = ref(false);
 
 const filters=computed(()=>{
   let filter = [];
+  if(hideDisabled.value) filter.push('隐藏停用');
   if(searchKeyword.value.length>0) filter.push('关键字');
   if(selectedBank.value!='全部') filter.push('银行');
   if(selectedCardType.value!='全部') filter.push('类型');
