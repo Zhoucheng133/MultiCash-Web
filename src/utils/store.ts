@@ -21,6 +21,8 @@ export default defineStore('store', ()=>{
   const cardTypes=ref<string[]>(['全部']);
   const selectedCardType=ref<string>('全部');
 
+  const hideDisabled=ref(true);
+
   const cards=ref<BankCard[]>([]);
 
   const recordFilter=ref<RecordFilter>({
@@ -53,6 +55,7 @@ export default defineStore('store', ()=>{
     selectedCardType,
     cards,
     recordFilter,
-    resetFilter
+    resetFilter,
+    hideDisabled
   }
 })

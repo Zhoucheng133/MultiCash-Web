@@ -36,7 +36,8 @@ export async function getCards(): Promise<RequestResponse> {
     const matchType = selectedCardType!='全部'
       ? card.card_type?.includes(selectedCardType) 
       : true;
-    return matchKeyword && matchBank && matchType;
+    const matchEnabled = store.hideDisabled ? card.status==1 ?  true : false : true;
+    return matchKeyword && matchBank && matchType && matchEnabled;
   });
 
   store.cards = cards;

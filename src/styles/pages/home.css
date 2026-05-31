@@ -98,6 +98,9 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
+.filter_panel_desktop_2{
+  display: flex;
+}
 
 @media screen and (max-width: 1040px) {
   .page{
@@ -127,5 +130,8 @@
   }
   .card_list{
     grid-template-columns: repeat(1, 1fr);
+  }
+  .filter_panel_desktop_2{
+    display: none;
   }
 }

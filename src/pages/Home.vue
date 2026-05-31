@@ -75,6 +75,9 @@
           @update:modelValue="getCards"
         ></v-select>
       </div>
+      <div class="filter_panel_desktop_2">
+        <v-checkbox label="隐藏停用卡片" hide-details v-model="hideDisabled" @update:model-value="getCards" />
+      </div>
       <div class="filter_panel_mobile">
         <div class="filters" v-if="filters.length!=0">
           <v-chip v-for="(item, index) in filters" :key="index" color="green">
@@ -160,7 +163,7 @@ const openAddCardDialog = () => {
 };
 
 const store=Store();
-const { searchKeyword, banks, selectedBank, cardTypes, selectedCardType, cards } = storeToRefs(store);
+const { searchKeyword, banks, selectedBank, cardTypes, selectedCardType, hideDisabled, cards } = storeToRefs(store);
 
 const cardIndex = ref(0);
 const dialog = ref(false);
