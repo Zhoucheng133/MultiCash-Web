@@ -12,9 +12,9 @@
         </div>
       </div>
       <div class="section_info_desktop">
-        <InfoPanel title="银行卡数量" :content="cards.length" />
-        <InfoPanel title="余额" :content="balanceText" />
-        <InfoPanel title="启用中" :content="enabledCardCount" />
+        <InfoPanel title="银行卡数量" :content="cards.length" :hide="false" />
+        <InfoPanel title="余额" :content="balanceText" :hide="true" />
+        <InfoPanel title="启用中" :content="enabledCardCount" :hide="false" />
       </div>
       <div class="carousel">
         <v-carousel 
@@ -26,17 +26,17 @@
         >
           <v-carousel-item>
             <div class="carousel_item">
-              <InfoPanel title="银行卡数量" :content="cards.length" />
+              <InfoPanel title="银行卡数量" :content="cards.length" :hide="false" />
             </div>
           </v-carousel-item>
           <v-carousel-item>
             <div class="carousel_item">
-              <InfoPanel title="余额" :content="balanceText" />
+              <InfoPanel title="余额" :content="balanceText" :hide="true" />
             </div>
           </v-carousel-item>
           <v-carousel-item>
             <div class="carousel_item">
-              <InfoPanel title="启用中" :content="enabledCardCount" />
+              <InfoPanel title="启用中" :content="enabledCardCount" :hide="false" />
             </div>
           </v-carousel-item>
         </v-carousel>

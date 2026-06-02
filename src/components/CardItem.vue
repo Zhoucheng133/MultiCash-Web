@@ -27,7 +27,10 @@
 
       <div class="meta-item">
         <span class="meta-label">BALANCE</span>
-        <span class="meta-value">¥ {{ formatBalance(card.balance) }}</span>
+        <span class="meta-value" @click.stop="showBalance=!showBalance">
+          <div v-if="showBalance">¥ {{ formatBalance(card.balance) }}</div>
+          <div v-else>¥ ***</div>
+        </span>
       </div>
       <div class="logo">
         <img :src="logoHandler()" alt="" srcset="" width="50">
@@ -45,6 +48,8 @@ import { type BankCard } from '../utils/types'
 import CardDialog from './CardDialog.vue';
 
 const cardDialogRef=ref();
+
+const showBalance=ref(false);
 
 const showDialog=()=>{
   cardDialogRef.value.show();
