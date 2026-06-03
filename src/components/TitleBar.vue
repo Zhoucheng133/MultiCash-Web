@@ -75,8 +75,8 @@ const changeThemeHandler=(mode: DarkMode) => {
   }
 };
 
-function themeSync(newTheme: any){
-  const isDark = theme.themes.value[newTheme]?.dark  || newTheme.includes('dark')
+function themeSync(){
+  const isDark = theme.current.value.dark;
   document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
   let themeMeta = document.querySelector("meta[name='theme-color']") as HTMLMetaElement | null;
 
@@ -90,12 +90,12 @@ function themeSync(newTheme: any){
 }
 
 watch(()=>theme.global.name.value,
-  (newTheme)=>{
-    themeSync(newTheme);
+  (_)=>{
+    themeSync();
   }
 )
 
-themeSync(theme.global.name.value);
+themeSync();
 
 const router=useRouter();
 
