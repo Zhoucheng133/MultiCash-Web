@@ -31,7 +31,7 @@
           </v-list>
         </v-menu>
       </v-btn>
-      <v-btn variant="text" size="40">
+      <v-btn variant="text" size="40" v-if="props.isLogin">
         <i class="far fa-user" style="font-size: 15px;"></i>
         <v-menu activator="parent">
           <v-list width="200">
