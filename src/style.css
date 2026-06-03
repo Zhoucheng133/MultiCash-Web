@@ -63,7 +63,7 @@ body{
   margin: 0;
   padding: 0;
   color: var(--mc-text);
-  background-color: var(--mc-surface-solid);
+  /* background-color: var(--mc-surface-solid); */
 }
 
 .v-checkbox .v-selection-control{

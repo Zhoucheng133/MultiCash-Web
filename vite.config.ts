@@ -13,7 +13,7 @@ export default defineConfig({
       manifest: {
         name: "MultiCash",
         short_name: 'MultiCash',
-        theme_color: '#ffffff',
+        // theme_color: '#ffffff',
         icons: [
           {
             src: 'pwa-192x192.png',

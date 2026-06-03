@@ -78,6 +78,15 @@ const changeThemeHandler=(mode: DarkMode) => {
 function themeSync(newTheme: any){
   const isDark = theme.themes.value[newTheme]?.dark  || newTheme.includes('dark')
   document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
+  let themeMeta = document.querySelector("meta[name='theme-color']") as HTMLMetaElement | null;
+
+  if (!themeMeta) {
+    themeMeta = document.createElement('meta');
+    themeMeta.name = 'theme-color';
+    document.head.appendChild(themeMeta);
+  }
+
+  themeMeta.content = isDark ? "#101723" : "#ffffff";
 }
 
 watch(()=>theme.global.name.value,
