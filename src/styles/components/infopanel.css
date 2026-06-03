@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: column;
   height: 120px;
-  background-color: white;
+  background-color: var(--mc-surface-solid);
+  border: 1px solid var(--mc-surface-border);
   border-radius: 10px;
   box-sizing: border-box;
   padding: 20px;
@@ -19,13 +20,14 @@
 
 .title{
   font-size: 16px;
-  color: grey;
+  color: var(--mc-text-muted);
 }
 
 .content{
   font-weight: bold;
   font-size: 30px;
   margin-top: 8px;
+  color: var(--mc-text);
 }
 
 .hide{

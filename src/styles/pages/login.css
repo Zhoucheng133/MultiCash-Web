@@ -3,9 +3,8 @@
   width: 100vw;
   overflow: hidden;
   position: fixed;
-  background:
-    radial-gradient(circle at top left, rgba(25, 118, 210, 0.16), transparent 34rem),
-    linear-gradient(135deg, #f7f9fc 0%, #eef3f8 54%, #f8fbff 100%);
+  background: var(--mc-login-bg);
+  color: var(--mc-text);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,9 +13,11 @@
 
 .panel{
   width: 400px;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: var(--mc-surface);
+  border: 1px solid var(--mc-surface-border);
   border-radius: 10px;
   backdrop-filter: blur(15px);
+  box-shadow: var(--mc-panel-shadow);
   padding: 30px;
   box-sizing: border-box;
   user-select: none;

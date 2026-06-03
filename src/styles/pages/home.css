@@ -3,9 +3,8 @@
   width: 100vw;
   overflow: hidden;
   position: fixed;
-  background:
-    radial-gradient(circle at top left, rgba(25, 118, 210, 0.16), transparent 34rem),
-    linear-gradient(135deg, #f7f9fc 0%, #eef3f8 54%, #f8fbff 100%);
+  background: var(--mc-login-bg);
+  color: var(--mc-text);
   box-sizing: border-box;
   padding-top: 60px;
   overflow: auto;
@@ -28,7 +27,7 @@
 
 .manage_title{
   font-size: 13px;
-  color: rgb(23, 105, 170);
+  color: var(--mc-primary);
   font-weight: bold;
 }
 
@@ -38,7 +37,7 @@
 }
 
 .section_title_actions > button{
-  background-color: rgb(23, 105, 170);
+  background-color: var(--mc-primary);
 }
 
 .section_info_desktop{
@@ -75,7 +74,8 @@
 .filter_panel_mobile{
   display: none;
   width: 100%;
-  background-color: white;
+  background-color: var(--mc-surface);
+  border: 1px solid var(--mc-surface-border);
   margin-top: 20px;
   border-radius: 10px;
   padding: 15px;
@@ -83,7 +83,7 @@
 }
 
 .filter_panel_mobile > button{
-  background-color: rgb(23, 105, 170);
+  background-color: var(--mc-primary);
 }
 
 .filters{

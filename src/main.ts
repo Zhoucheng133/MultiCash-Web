@@ -19,6 +19,9 @@ const vuetify = createVuetify({
     locale: 'zhHans',
     messages: { zhHans },
   },
+  theme: {
+    defaultTheme: "light",
+  },
   components,
   directives,
   icons: {

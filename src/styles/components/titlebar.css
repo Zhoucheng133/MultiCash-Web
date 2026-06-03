@@ -6,7 +6,9 @@
   justify-content: space-between;
   user-select: none;
   height: 60px;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: var(--mc-header-bg);
+  border-bottom: 1px solid var(--mc-surface-border);
+  color: var(--mc-text);
   position: sticky;
   backdrop-filter: blur(15px);
 }

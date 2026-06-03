@@ -90,7 +90,7 @@ const emit = defineEmits([ "reloadRecords" ]);
 .record_filter{
   position: sticky;
   top: 0;
-  background-color: white;
+  background-color: rgb(var(--v-theme-surface));
   width: 100%;
   z-index: 20;
   display: flex;
