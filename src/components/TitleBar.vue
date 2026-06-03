@@ -56,6 +56,7 @@ import Store from '../utils/store';
 import { storeToRefs } from 'pinia';
 import { DarkMode } from '../utils/store';
 import { useTheme } from 'vuetify';
+import { watch } from 'vue';
 
 const theme=useTheme();
 
@@ -64,6 +65,8 @@ const store=Store();
 const { darkMode }=storeToRefs(store);
 
 const changeThemeHandler=(mode: DarkMode) => {
+  const isDark = mode === DarkMode.dark || (mode === DarkMode.auto && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
   theme.change(mode===DarkMode.auto ? 'system' : mode==DarkMode.dark ? 'dark' : 'light');
   if(mode!=DarkMode.auto){
     localStorage.setItem('darkMode', mode==DarkMode.dark ? 'dark' : 'light');
@@ -71,6 +74,19 @@ const changeThemeHandler=(mode: DarkMode) => {
     localStorage.removeItem('darkMode');
   }
 };
+
+function themeSync(newTheme: any){
+  const isDark = theme.themes.value[newTheme]?.dark  || newTheme.includes('dark')
+  document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
+}
+
+watch(()=>theme.global.name.value,
+  (newTheme)=>{
+    themeSync(newTheme);
+  }
+)
+
+themeSync(theme.global.name.value);
 
 const router=useRouter();
 

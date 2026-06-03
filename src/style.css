@@ -20,7 +20,7 @@
 }
 
 .v-theme--dark {
-  color-scheme: dark; /* 这一行保留，告诉浏览器渲染原生滚动条等为深色 */
+  color-scheme: dark;
   --mc-text: #eef4ff;
   --mc-text-muted: #9da8ba;
   --mc-surface: rgba(19, 27, 40, 0.72);
