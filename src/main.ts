@@ -20,7 +20,7 @@ const vuetify = createVuetify({
     messages: { zhHans },
   },
   theme: {
-    defaultTheme: "light",
+    defaultTheme: localStorage.getItem('darkMode') === 'dark' ? 'dark' : localStorage.getItem('darkMode') === 'light' ? 'light' : "system",
   },
   components,
   directives,

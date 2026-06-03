@@ -12,6 +12,12 @@ interface RecordFilter{
   status?: number;  // 0表示禁用，1表示正常
 }
 
+export enum DarkMode{
+  dark,
+  light,
+  auto,
+}
+
 export default defineStore('store', ()=>{
   const searchKeyword=ref("");
 
@@ -22,6 +28,8 @@ export default defineStore('store', ()=>{
   const selectedCardType=ref<string>('全部');
 
   const hideDisabled=ref(true);
+
+  const darkMode=ref<DarkMode>(DarkMode.auto);
 
   const cards=ref<BankCard[]>([]);
 
@@ -56,6 +64,7 @@ export default defineStore('store', ()=>{
     cards,
     recordFilter,
     resetFilter,
-    hideDisabled
+    hideDisabled,
+    darkMode
   }
 })

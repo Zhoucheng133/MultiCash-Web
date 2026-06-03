@@ -4,7 +4,33 @@
       <img src="/icon.svg" alt="" width="40px" draggable="false">
       <div class="head_label">MultiCash</div>
     </div>
-    <div class="actions" v-if="props.isLogin">
+    <div class="actions">
+      <v-btn variant="text" size="40">
+        <i :class="['fa', darkMode==DarkMode.auto ? 'fa-circle-half-stroke' : darkMode==DarkMode.dark ? 'fa-moon' : 'fa-sun']" style="font-size: 15px;"></i>
+        <v-menu activator="parent">
+          <v-list width="200">
+            <v-list-subheader>显示</v-list-subheader>
+            <v-list-item @click="changeThemeHandler(DarkMode.auto)">
+              <template v-slot:prepend>
+                <i class="fa fa-circle-half-stroke mr-2"></i>
+              </template>
+              <v-list-item-title>自动</v-list-item-title>
+            </v-list-item>
+            <v-list-item @click="changeThemeHandler(DarkMode.light)">
+              <template v-slot:prepend>
+                <i class="fa fa-sun mr-2"></i>
+              </template>
+              <v-list-item-title>浅色</v-list-item-title>
+            </v-list-item>
+            <v-list-item @click="changeThemeHandler(DarkMode.dark)">
+              <template v-slot:prepend>
+                <i class="fa fa-moon mr-2"></i>
+              </template>
+              <v-list-item-title>深色</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </v-btn>
       <v-btn variant="text" size="40">
         <i class="far fa-user" style="font-size: 15px;"></i>
         <v-menu activator="parent">
@@ -26,6 +52,25 @@
 <script lang="ts" setup>
 import { logoutHandler } from '../utils/components/user';
 import { useRouter } from 'vue-router';
+import Store from '../utils/store';
+import { storeToRefs } from 'pinia';
+import { DarkMode } from '../utils/store';
+import { useTheme } from 'vuetify';
+
+const theme=useTheme();
+
+const store=Store();
+
+const { darkMode }=storeToRefs(store);
+
+const changeThemeHandler=(mode: DarkMode) => {
+  theme.change(mode===DarkMode.auto ? 'system' : mode==DarkMode.dark ? 'dark' : 'light');
+  if(mode!=DarkMode.auto){
+    localStorage.setItem('darkMode', mode==DarkMode.dark ? 'dark' : 'light');
+  }else{
+    localStorage.removeItem('darkMode');
+  }
+};
 
 const router=useRouter();
 
