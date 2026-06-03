@@ -95,6 +95,12 @@ watch(()=>theme.global.name.value,
   }
 )
 
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) {
+    themeSync(theme.global.name.value)
+  }
+})
+
 themeSync(theme.global.name.value);
 
 const router=useRouter();
